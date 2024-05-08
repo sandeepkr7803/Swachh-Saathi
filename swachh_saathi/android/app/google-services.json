@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19600933652",
+    "project_id": "swachh-saathi",
+    "storage_bucket": "swachh-saathi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19600933652:android:ef68fde232084f969d3801",
+        "android_client_info": {
+          "package_name": "com.example.swachh_saathi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvQtRUaixg_EPsUVXssxgD81t16B-QCvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
