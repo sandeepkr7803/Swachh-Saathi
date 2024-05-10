@@ -1,4 +1,10 @@
 import 'package:flutter/cupertino.dart';
+
+/// The line `import 'package:flutter/material.dart';` in Dart is used to import the material library
+/// from the Flutter framework. This library provides a set of widgets and classes that implement
+/// Material Design, a popular design language developed by Google. By importing this library, you gain
+/// access to pre-built widgets and styles that can be used to create visually appealing and consistent
+/// user interfaces in your Flutter applications.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swachh_saathi/newsandarticles.dart';
