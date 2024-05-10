@@ -31,10 +31,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
               });
             },
             tabMargin: EdgeInsets.all(10),
-            tabBackgroundColor: Colors.red,
+            tabBackgroundColor: Colors.orangeAccent,
             padding: EdgeInsets.all(10),
             gap: 8,
-            backgroundColor: Color.fromARGB(255, 0, 178, 209),
+            backgroundColor: Theme.of(context).primaryColor,
             color: Colors.white,
             activeColor: Colors.white,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -53,11 +53,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
               // ),
               GButton(
                 icon: Icons.newspaper,
-                text: 'News and Article',
+                text: 'News and Articles',
               ),
               GButton(
                 icon: Icons.file_copy,
-                text: 'Complaint',
+                text: 'Complaints',
               ),
               GButton(
                 icon: Icons.person,

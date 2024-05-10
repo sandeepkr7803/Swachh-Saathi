@@ -1,9 +1,5 @@
-import 'dart:ffi';
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ComplaintScreen extends StatefulWidget {
@@ -82,10 +78,12 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).primaryColor,
+        centerTitle: true,
         title: Text(
           "Complaints",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: 30),
         ),
       ),
       body: SingleChildScrollView(
@@ -108,14 +106,14 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Click Image ",
+                              "Select Image",
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
                             Text(
-                              "Image must be in Landscape ",
+                              "(Try uploading in Landscape)",
                               style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,

@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/widgets.dart';
-import 'package:swachh_saathi/bottomnavbar.dart';
-import 'package:swachh_saathi/homescreen.dart';
-import 'package:swachh_saathi/loginscreen.dart';
-import 'package:swachh_saathi/registerscreen.dart';
-import 'package:swachh_saathi/splashscreen.dart';
+import 'package:get/get.dart';
+import './bottomnavbar.dart';
+import './loginscreen.dart';
+import './registerscreen.dart';
+import './splashscreen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,7 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         routes: {
           '/1screen': (BuildContext context) => BottomNavigation(),
           '/2screen': (BuildContext context) => RegisterScreen(),
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: Color.fromARGB(255, 0, 111, 74),
               primary: Color.fromARGB(255, 0, 111, 74)),
-          useMaterial3: true,
+          // useMaterial3: true,
         ),
         home: SplashScreen());
   }
