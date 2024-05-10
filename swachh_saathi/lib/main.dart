@@ -6,6 +6,7 @@ import 'package:swachh_saathi/bottomnavbar.dart';
 import 'package:swachh_saathi/homescreen.dart';
 import 'package:swachh_saathi/loginscreen.dart';
 import 'package:swachh_saathi/registerscreen.dart';
+import 'package:swachh_saathi/splashscreen.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -37,6 +38,6 @@ class MyApp extends StatelessWidget {
               primary: Color.fromARGB(255, 0, 111, 74)),
           useMaterial3: true,
         ),
-        home: LoginScreen());
+        home: SplashScreen());
   }
 }
