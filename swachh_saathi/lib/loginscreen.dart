@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-        body: SafeArea(
+        body: SingleChildScrollView(
             child: Column(
           children: [
             Padding(

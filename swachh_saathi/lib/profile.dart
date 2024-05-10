@@ -1,10 +1,9 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:swachh_saathi/complaints_tracking.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -25,7 +24,10 @@ class _UserProfileState extends State<UserProfile> {
               children: [
                 TextButton.icon(
                   label: Text('Gallery'),
-                  onPressed: () => pickImageFromGallery(),
+                  onPressed: () {
+                    pickImageFromGallery();
+                    Get.back();
+                    },
                   icon: Icon(
                     Icons.browse_gallery,
                     size: 60,
@@ -33,7 +35,10 @@ class _UserProfileState extends State<UserProfile> {
                 ),
                 TextButton.icon(
                   label: Text('camera'),
-                  onPressed: () => pickImageFromCamera(),
+                  onPressed: () {
+                    pickImageFromCamera();
+                    Get.back();
+                  },
                   icon: Icon(
                     Icons.camera,
                     size: 60,
@@ -69,135 +74,160 @@ class _UserProfileState extends State<UserProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          Material(
-              elevation: 8,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50)),
-              child: Container(
-                height: 220,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(50))),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
+    return SingleChildScrollView(
+          child: Column(
+    children: [
+      Material(
+          elevation: 8,
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(50),
+              bottomRight: Radius.circular(50)),
+          child: Container(
+            height: 240,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(50),
+                    bottomRight: Radius.circular(50))),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  InkWell(
+                    onTap: bottomSheet,
+                    child: CircleAvatar(
+                      radius: 80,
+                      backgroundColor: Colors.white,
+                      foregroundImage:
+                          image != null ? FileImage(image!) : null,
+                      child: image != null
+                          ? null
+                          : Icon(Icons.person_2_rounded, size: 100),
                     ),
-                    InkWell(
-                      onTap: bottomSheet,
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Colors.white,
-                        foregroundImage:
-                            image != null ? FileImage(image!) : null,
-                        child: image != null
-                            ? null
-                            : Icon(Icons.person_2_rounded, size: 100),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hi!",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20),
                       ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hi!",
+                      SizedBox(
+                        width: 180,
+                        child: Text(
+                          "Afraz Hasan Naqvi",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
                               color: Colors.white,
-                              fontSize: 20),
+                              fontSize: 22),
+                          maxLines: 3,
                         ),
-                        SizedBox(
-                          width: 180,
-                          child: Text(
-                            "Afraz Hasan Naqvi",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
-                                color: Colors.white,
-                                fontSize: 22),
-                            maxLines: 3,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              )),
-          SizedBox(
-            child: Card(
-              elevation: 5,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )),
+      SizedBox(
+        height: 15,
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        child: Card(
+          elevation: 5,
+          child: InkWell(
+            onTap: () {
+              Get.to(() => ComplaintsTracking());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10),
               child: ListTile(
                 leading: Text(
-                  "Track You Complaint",
-                  style: TextStyle(fontSize: 20),
+                  "Track Your Complaints",
+                  style: TextStyle(fontSize: 22, color: Colors.black),
                 ),
-                trailing: Icon(Icons.arrow_circle_right),
+                trailing: Icon(Icons.arrow_forward_rounded, color: Color.fromARGB(255, 0, 111, 74),),
               ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.stretch,
+              //   children: [
+              //
+              //     Text(
+              //       "Track Your Complaints",
+              //       style: TextStyle(fontSize: 20),
+              //     ),
+              //     SizedBox(height: 10,),
+              //     Align(
+              //         alignment: Alignment.centerRight,
+              //         child: Icon(Icons.arrow_forward_rounded, size: 25,)),
+              //   ],
+              // ),
             ),
           ),
-          SizedBox(
-            height: 15,
-          ),
-          _cardData(context, "Phone Number", Icons.phone),
-          _cardData(context, "Address", Icons.location_pin),
-          _cardData(context, "Rate Us", Icons.star),
-          SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Sign Out",
-              style: TextStyle(fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(elevation: 5),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircleAvatar(
-                radius: 25,
-                child: Icon(
-                  Icons.language,
-                  color: Colors.white,
-                ),
-                backgroundColor: Theme.of(context).primaryColor,
-              ),
-              CircleAvatar(
-                radius: 25,
-                child: Icon(
-                  FontAwesomeIcons.instagram,
-                  color: Colors.white,
-                ),
-                backgroundColor: Theme.of(context).primaryColor,
-              ),
-              CircleAvatar(
-                radius: 25,
-                child: Icon(
-                  FontAwesomeIcons.twitter,
-                  color: Colors.white,
-                ),
-                backgroundColor: Theme.of(context).primaryColor,
-              ),
-            ],
-          )
-        ],
+        ),
       ),
-    ));
+      _cardData(context, "Phone Number", Icons.phone),
+      _cardData(context, "Address", Icons.location_pin),
+      _cardData(context, "Rate Us", Icons.star),
+      SizedBox(
+        height: 20,
+      ),
+      ElevatedButton(
+        onPressed: () {},
+        child: Text(
+          "Sign Out",
+          style: TextStyle(fontSize: 18),
+        ),
+        style: ElevatedButton.styleFrom(elevation: 5),
+      ),
+      SizedBox(
+        height: 30,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CircleAvatar(
+            radius: 25,
+            child: Icon(
+              Icons.language,
+              color: Colors.white,
+            ),
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+          CircleAvatar(
+            radius: 25,
+            child: Icon(
+              FontAwesomeIcons.instagram,
+              color: Colors.white,
+            ),
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+          CircleAvatar(
+            radius: 25,
+            child: Icon(
+              FontAwesomeIcons.twitter,
+              color: Colors.white,
+            ),
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+        ],
+      )
+    ],
+          ),
+        );
   }
 
   Widget _cardData(BuildContext context, String label, IconData icon) {
@@ -212,7 +242,7 @@ class _UserProfileState extends State<UserProfile> {
               icon,
               color: Theme.of(context).primaryColor,
             ),
-            title: Text(label),
+            title: Text(label, style: TextStyle(fontSize: 20),),
           ),
         ),
       ),

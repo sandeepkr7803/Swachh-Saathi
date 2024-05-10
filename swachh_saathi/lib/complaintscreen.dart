@@ -135,8 +135,8 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
               Text("Location"),
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Enter the Area/Steet',
-                  labelText: 'Area, Steet',
+                  hintText: 'Enter the Area/Street',
+                  labelText: 'Area, Street',
                   prefixIcon: Icon(
                     Icons.location_pin,
                     color: Theme.of(context).primaryColor,

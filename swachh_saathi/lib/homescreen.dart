@@ -1,14 +1,6 @@
-import 'package:flutter/cupertino.dart';
-
-/// The line `import 'package:flutter/material.dart';` in Dart is used to import the material library
-/// from the Flutter framework. This library provides a set of widgets and classes that implement
-/// Material Design, a popular design language developed by Google. By importing this library, you gain
-/// access to pre-built widgets and styles that can be used to create visually appealing and consistent
-/// user interfaces in your Flutter applications.
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swachh_saathi/newsandarticles.dart';
-
+import 'package:swachh_saathi/complaints_tracking.dart';
 import 'constraints.dart';
 import 'news.dart';
 
@@ -37,8 +29,8 @@ class HomeScreen extends StatelessWidget {
               ))
         ],
         title: Text(
-          "Swachh Saathi ",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          "Swachh Saathi",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
         ),
         centerTitle: true,
       ),
@@ -69,7 +61,9 @@ class HomeScreen extends StatelessWidget {
                     width: 15,
                   ),
                   InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => ComplaintsTracking());
+                      },
                       child: buildCard("17", "Track \n Progress", 200)),
                 ],
               ),
@@ -145,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                
+
                                   const Expanded(
                                     child: Column(
                                       children: [
