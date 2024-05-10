@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:swachh_saathi_admin/splashscreen.dart';
 import './constants.dart';
 import 'firebase_options.dart';
 import './login_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }
