@@ -1,8 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swachh_saathi/bottomnavbar.dart';
+import 'package:swachh_saathi/constants.dart';
 import 'package:swachh_saathi/loginscreen.dart';
+
+import 'Controller/auth_controller1.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,13 +16,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  final AuthController1 authController = Get.put(AuthController1());
+
   @override
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
-        () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => LoginScreen())));
+        Duration(seconds: 3), () => authController.checkLoginStatus(firebaseAuth.currentUser));
   }
 
   @override

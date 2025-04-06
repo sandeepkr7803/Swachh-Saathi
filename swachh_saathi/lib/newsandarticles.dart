@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swachh_saathi/constraints.dart';
+import 'package:swachh_saathi/constants.dart';
 
 import 'news.dart';
 

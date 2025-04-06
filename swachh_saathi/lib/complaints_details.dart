@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ComplaintsDetails extends StatefulWidget {
   const ComplaintsDetails({super.key});
@@ -16,12 +17,12 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 270,
+              height: 270.h,
               width: double.maxFinite,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
+                  bottomLeft: Radius.circular(25.r),
+                  bottomRight: Radius.circular(25.r),
                 ),
                 image: DecorationImage(
                   image: AssetImage('assets/images/illustration1.png'),
@@ -33,7 +34,7 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 25.0, left: 15),
+                    padding: EdgeInsets.only(top: 25.h, left: 15.w),
                     child: IconButton(
                       style: const ButtonStyle(
                         backgroundColor:
@@ -48,13 +49,13 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
                 ],
               ),
             ),
-            const SizedBox(height: 25),
+            SizedBox(height: 25.h),
             ListTile(
               leading: const Icon(Icons.location_on_outlined),
               title: Text(
                 '5, Marine Beach, Goa',
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
@@ -64,8 +65,8 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
               leading: const Icon(Icons.calendar_month_outlined),
               title: Text(
                 '09-05-2024',
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
@@ -75,29 +76,29 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
               leading:  const Icon(Icons.note_alt_outlined),
               title: Text(
                 'In-process',
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: EdgeInsets.all(8.0.r),
               child: Text(
                 "Description",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: EdgeInsets.all(8.0.r),
               child: Text(
                 'Description',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -105,70 +106,6 @@ class _ComplaintsDetailsState extends State<ComplaintsDetails> {
           ],
         ),
       ),
-      // floatingActionButton: ,
-      // bottomNavigationBar: Container(
-      //   // color: Colors.grey[200],
-      //   decoration: const BoxDecoration(
-      //     border: Border(
-      //         top: BorderSide(
-      //             color: Colors.grey, width: 1, style: BorderStyle.solid)),
-      //   ),
-      //   height: 70,
-      //   width: double.maxFinite,
-      //   padding: const EdgeInsets.only(
-      //     left: 20,
-      //     right: 20,
-      //   ),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.end,
-      //     children: [
-      //       isProcessing?ElevatedButton(
-      //         onPressed: () {
-      //           setState(() {
-      //             isProcessing = false;
-      //             process = 'Completed';
-      //           });
-      //
-      //         },
-      //         // isExtended: true,
-      //         style: ElevatedButton.styleFrom(
-      //             backgroundColor: Colors.red,
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(8),
-      //             )),
-      //         child: const Text(
-      //           'End Process',
-      //           style: TextStyle(
-      //             fontSize: 20,
-      //             color: Colors.white,
-      //             fontWeight: FontWeight.bold,
-      //           ),
-      //         ),
-      //       ) : ElevatedButton(
-      //         onPressed: () {
-      //           setState(() {
-      //             isProcessing = true;
-      //             process = 'Pending';
-      //           });
-      //         },
-      //         // isExtended: true,
-      //         style: ElevatedButton.styleFrom(
-      //             backgroundColor: themeColor,
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(8),
-      //             )),
-      //         child: const Text(
-      //           'Start Process',
-      //           style: TextStyle(
-      //             fontSize: 20,
-      //             color: Colors.white,
-      //             fontWeight: FontWeight.bold,
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

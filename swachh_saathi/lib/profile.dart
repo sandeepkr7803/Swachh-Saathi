@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:swachh_saathi/complaints_tracking.dart';
+import '../Controller/auth_controller1.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -13,6 +14,7 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  final authController = Get.put(AuthController1());
   File? image;
 
   void bottomSheet() {
@@ -186,7 +188,9 @@ class _UserProfileState extends State<UserProfile> {
         height: 20,
       ),
       ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          authController.logout();
+        },
         child: Text(
           "Sign Out",
           style: TextStyle(fontSize: 18),

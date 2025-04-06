@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swachh_saathi/complaints_tracking.dart';
-import 'constraints.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import './complaints_tracking.dart';
+import 'constants.dart';
 import 'news.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6),
+          padding: EdgeInsets.symmetric(horizontal: 6.w),
           child: CircleAvatar(
             backgroundImage: AssetImage("assets/images/affu.jpg"),
           ),
@@ -30,18 +31,18 @@ class HomeScreen extends StatelessWidget {
         ],
         title: Text(
           "Swachh Saathi",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 30.sp),
         ),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 20, top: 20),
+        padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 20.h),
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.8,
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50), topRight: Radius.circular(50))),
+                topLeft: Radius.circular(50.r), topRight: Radius.circular(50.r))),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,46 +50,46 @@ class HomeScreen extends StatelessWidget {
               Text(
                 "Welcome to",
                 style: TextStyle(
-                  fontSize: 38,
+                  fontSize: 38.sp,
                 ),
               ),
               Row(
                 children: [
                   InkWell(
                       onTap: () {},
-                      child: buildCard("17", "Report \n Issues", 130)),
+                      child: buildCard("17", "Report \n Issues", 140.w)),
                   SizedBox(
-                    width: 15,
+                    width: 15.w,
                   ),
                   InkWell(
                       onTap: () {
                         Get.to(() => ComplaintsTracking());
                       },
-                      child: buildCard("17", "Track \n Progress", 200)),
+                      child: buildCard("17", "Track \n Progress", 180.w)),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 0, right: 20),
+                padding: EdgeInsets.only(top: 20, right: 10),
                 child: InkWell(
                   onTap: () {},
                   child: Container(
                     width: double.infinity,
-                    height: 170,
+                    height: 130.h,
                     decoration: BoxDecoration(
                         color: Color(0xFDDFFFFA),
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius: BorderRadius.circular(20.r)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           "14",
                           style: TextStyle(
-                              fontSize: 50, fontWeight: FontWeight.bold),
+                              fontSize: 50.sp, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "News & Articles",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 20.sp,
                           ),
                         ),
                       ],
@@ -97,18 +98,19 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 20.h,
               ),
               Text(
                 "Today's News",
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 28.sp,
                 ),
               ),
               SizedBox(
                 height: 300,
+                // width: 600.w,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: ListView.builder(
                       itemCount: 3,
                       itemBuilder: (context, index) {
@@ -117,30 +119,36 @@ class HomeScreen extends StatelessWidget {
                             Get.to(() => const NewsArticle());
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
+                            padding: EdgeInsets.only(
+                              top: 5,
+                              bottom: 5,
+                              left: 5,
+                              right: 10,
+                            ),
                             child: Container(
                               height: 120,
+                              padding: EdgeInsets.only(top: 10),
+                              // width: 500,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                                 color: cardColor,
                               ),
                               child: Row(
                                 children: [
                                   Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(8.r),
                                       child: Image.asset(
-                                        'assets/images/illustration1.png',
-                                        // height: 72,
+                                        'assets/images/illustration2.png',
+                                        height: 140.h,
+                                        width: 140.w,
                                       ),
                                     ),
                                   ),
 
-                                  const Expanded(
+                                  Expanded(
                                     child: Column(
                                       children: [
                                         Expanded(
@@ -150,7 +158,7 @@ class HomeScreen extends StatelessWidget {
                                             maxLines: 2,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 18,
+                                              fontSize: 18.sp,
                                               color: Color.fromARGB(255, 0, 111, 74),
                                             ),
                                           ),
@@ -187,20 +195,20 @@ class HomeScreen extends StatelessWidget {
 
   Widget buildCard(String label, String number, double Width) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 0),
+      padding: EdgeInsets.only(top: 20.h,),
       child: Container(
-        padding: EdgeInsets.only(left: 20),
+        padding: EdgeInsets.only(left: 20.w),
         width: Width,
-        height: 170,
+        height: 130.h,
         decoration: BoxDecoration(
-            color: Color(0xFDDFFFFA), borderRadius: BorderRadius.circular(20)),
+            color: Color(0xFDDFFFFA), borderRadius: BorderRadius.circular(20.r)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               label,
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 40.sp, fontWeight: FontWeight.bold),
             ),
             Text(number),
           ],

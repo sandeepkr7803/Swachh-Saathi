@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:swachh_saathi/complaintscreen.dart';
-import 'package:swachh_saathi/homescreen.dart';
-import 'package:swachh_saathi/loginscreen.dart';
-import 'package:swachh_saathi/newsandarticles.dart';
-import 'package:swachh_saathi/profile.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import './complaintscreen.dart';
+import './homescreen.dart';
+import './newsandarticles.dart';
+import './profile.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -30,9 +30,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 this.index = index;
               });
             },
-            tabMargin: EdgeInsets.all(10),
+            tabMargin: EdgeInsets.all(10.r),
             tabBackgroundColor: Colors.orangeAccent,
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10.r),
             gap: 8,
             backgroundColor: Theme.of(context).primaryColor,
             color: Colors.white,
