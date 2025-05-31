@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:swachh_saathi_admin/constants.dart';
 
 class Complaints extends StatefulWidget {
@@ -9,7 +10,6 @@ class Complaints extends StatefulWidget {
 }
 
 class _ComplaintsState extends State<Complaints> {
-
   bool isProcessing = false;
   String process = 'Registered';
 
@@ -22,12 +22,12 @@ class _ComplaintsState extends State<Complaints> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 270,
+                height: 270.h,
                 width: double.maxFinite,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25),
+                    bottomLeft: Radius.circular(25.r),
+                    bottomRight: Radius.circular(25.r),
                   ),
                   image: DecorationImage(
                     image: AssetImage('assets/img/clean.jpg'),
@@ -39,11 +39,11 @@ class _ComplaintsState extends State<Complaints> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 25.0, left: 15),
+                      padding: EdgeInsets.only(top: 25.0.h, left: 15.h),
                       child: IconButton(
                         style: const ButtonStyle(
                           backgroundColor:
-                          MaterialStatePropertyAll(Colors.white54),
+                              WidgetStatePropertyAll(Colors.white54),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
@@ -54,13 +54,13 @@ class _ComplaintsState extends State<Complaints> {
                   ],
                 ),
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25.h),
               ListTile(
                 leading: const Icon(Icons.location_on_outlined),
                 title: Text(
                   '5, Marine Beach, Goa',
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
@@ -70,36 +70,36 @@ class _ComplaintsState extends State<Complaints> {
                 leading: const Icon(Icons.calendar_month_outlined),
                 title: Text(
                   '09-05-2024',
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
                 ),
               ),
               ListTile(
-                leading:  const Icon(Icons.note_alt_outlined),
+                leading: const Icon(Icons.note_alt_outlined),
                 title: Text(
                   process,
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: EdgeInsets.all(8.0.r),
                 child: Text(
                   "Description",
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: EdgeInsets.all(8.0.r),
                 child: Text(
                   'Description',
                   style: TextStyle(
@@ -114,64 +114,65 @@ class _ComplaintsState extends State<Complaints> {
         // floatingActionButton: ,
         bottomNavigationBar: Container(
           // color: Colors.grey[200],
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             border: Border(
                 top: BorderSide(
-                    color: Colors.grey, width: 1, style: BorderStyle.solid)),
+                    color: Colors.grey, width: 1.w, style: BorderStyle.solid)),
           ),
-          height: 70,
+          height: 70.h,
           width: double.maxFinite,
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
+          padding: EdgeInsets.only(
+            left: 20.w,
+            right: 20.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              isProcessing?ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isProcessing = false;
-                    process = 'Completed';
-                  });
-
-                },
-                // isExtended: true,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    )),
-                child: const Text(
-                  'End Process',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ) : ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isProcessing = true;
-                    process = 'Pending';
-                  });
-                },
-                // isExtended: true,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: themeColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    )),
-                child: const Text(
-                  'Start Process',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              isProcessing
+                  ? ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          isProcessing = false;
+                          process = 'Completed';
+                        });
+                      },
+                      // isExtended: true,
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          )),
+                      child: Text(
+                        'End Process',
+                        style: TextStyle(
+                          fontSize: 20.r,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  : ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          isProcessing = true;
+                          process = 'Pending';
+                        });
+                      },
+                      // isExtended: true,
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: themeColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          )),
+                      child: Text(
+                        'Start Process',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
@@ -179,4 +180,3 @@ class _ComplaintsState extends State<Complaints> {
     );
   }
 }
-

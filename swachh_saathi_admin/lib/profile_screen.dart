@@ -1,10 +1,13 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_icons/awesome_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:swachh_saathi_admin/authentication/controller/auth_Controller.dart';
 import './constants.dart';
+
+final EmailAuthController authController = Get.find();
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,40 +17,64 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
   File? image;
+  String email = '';
+  String password = '';
+  String name = ' ';
+  String phoneNo = ' ';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData(); // fetch user data on load
+  }
+
+  void fetchUserData() async {
+    final user = firebaseAuth.currentUser;
+    if (user != null) {
+      final doc = await firestore.collection('user_admin').doc(user.uid).get();
+      if (doc.exists) {
+        setState(() {
+          email = doc['email'] ?? '';
+          password = doc['password'] ?? '';
+          phoneNo = doc['phone_no'] ?? ' ';
+          name = doc['name'] ?? ' ';
+        });
+      }
+    }
+  }
 
   void bottomSheet() {
     showModalBottomSheet(
         context: context,
-        constraints: BoxConstraints(minHeight: 100),
+        constraints: BoxConstraints(minHeight: 100.h),
         builder: (context) => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextButton.icon(
-              label: Text('Gallery'),
-              onPressed: () {
-                pickImageFromGallery();
-                Get.back();
-                },
-              icon: Icon(
-                Icons.browse_gallery,
-                size: 60,
-              ),
-            ),
-            TextButton.icon(
-              label: Text('camera'),
-              onPressed: () {
-                pickImageFromCamera();
-                Get.back();
-                },
-              icon: Icon(
-                Icons.camera,
-                size: 60,
-              ),
-            ),
-          ],
-        ));
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton.icon(
+                  label: Text('Gallery'),
+                  onPressed: () {
+                    pickImageFromGallery();
+                    Get.back();
+                  },
+                  icon: Icon(
+                    Icons.browse_gallery,
+                    size: 60.sp,
+                  ),
+                ),
+                TextButton.icon(
+                  label: Text('camera'),
+                  onPressed: () {
+                    pickImageFromCamera();
+                    Get.back();
+                  },
+                  icon: Icon(
+                    Icons.camera,
+                    size: 60.sp,
+                  ),
+                ),
+              ],
+            ));
   }
 
   Future pickImageFromCamera() async {
@@ -81,32 +108,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // AppBar section remains unchanged...
             Material(
               color: themeColor,
               elevation: 8,
-              shape: const RoundedRectangleBorder(
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30.r),
+                  bottomLeft: Radius.circular(30.r),
                 ),
               ),
               child: Container(
-                height: 240,
-                padding: const EdgeInsets.symmetric(
+                height: 240.h,
+                padding: EdgeInsets.symmetric(
                   vertical: 20,
                   horizontal: 20,
-                  // horizontal: 20,
                 ),
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         IconButton(
                           style: const ButtonStyle(
                             backgroundColor:
-                            MaterialStatePropertyAll(Colors.white54),
+                                WidgetStatePropertyAll(Colors.white54),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -124,20 +149,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               bottomSheet();
                             },
                             child: CircleAvatar(
-                              radius: 70,
-                              backgroundImage: image != null? FileImage(image!): null,
-                              child: image != null ? null: const Icon(Icons.person_2_rounded, size: 70,) ,
+                              radius: 60.r,
+                              backgroundImage:
+                                  image != null ? FileImage(image!) : null,
+                              child: image != null
+                                  ? null
+                                  : Icon(
+                                      Icons.person_2_rounded,
+                                      size: 70,
+                                    ),
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 200,
                             child: ListTile(
                               title: FittedBox(
                                 fit: BoxFit.fitWidth,
                                 child: Text(
-                                  'Hi! \nSandeep Kumar',
+                                  'Hi! \n $name ',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 60.sp,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -160,37 +193,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
-            cardData(Icons.person_2_rounded, 'User1234'),
-            cardData(Icons.phone, '438923945'),
+            SizedBox(height: 20.h),
+            cardData(Icons.person_2_rounded, email),
+            cardData(Icons.phone, phoneNo),
             cardData(Icons.location_on, 'Dehradun'),
             cardData(Icons.star, "Rate Us"),
-            SizedBox(height: 20,),
+            SizedBox(height: 20.h),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 5,
-                ),
-                onPressed: () {},
-                child: Text('Sign Out', style: const TextStyle(fontSize: 20),)),
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 30,
-              ),
+                style: ElevatedButton.styleFrom(elevation: 5),
+                onPressed: () {
+                  authController.logout();
+                },
+                child: Text('Sign Out', style: TextStyle(fontSize: 16.sp))),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CircleAvatar(
                       backgroundColor: themeColor,
-                      radius: 25,
-                      child: Icon(Icons.language, color: Colors.white,)),
+                      radius: 25.r,
+                      child: Icon(Icons.language, color: Colors.white)),
                   CircleAvatar(
                       backgroundColor: themeColor,
-                      radius: 25,
-                      child: Icon(FontAwesomeIcons.instagram, color: Colors.white,)),
+                      radius: 25.r,
+                      child: Icon(FontAwesomeIcons.instagram,
+                          color: Colors.white)),
                   CircleAvatar(
                       backgroundColor: themeColor,
-                      radius: 25,
-                      child: Icon(FontAwesomeIcons.twitter, color: Colors.white,)),
+                      radius: 25.r,
+                      child:
+                          Icon(FontAwesomeIcons.twitter, color: Colors.white)),
                 ],
               ),
             ),
@@ -200,17 +233,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ));
   }
 
-  Widget cardData (IconData icon, String text) {
+  Widget cardData(IconData icon, String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 5,
+      padding: EdgeInsets.symmetric(
+        horizontal: 15.w,
+        vertical: 5.h,
       ),
       child: Card(
         elevation: 5,
         child: ListTile(
-          leading: Icon(icon, color: themeColor,),
-          title: Text(text, style: const TextStyle(fontSize: 20),),
+          leading: Icon(
+            icon,
+            color: themeColor,
+          ),
+          title: Text(
+            text,
+            style: TextStyle(fontSize: 18.sp, color: Colors.black),
+          ),
         ),
       ),
     );

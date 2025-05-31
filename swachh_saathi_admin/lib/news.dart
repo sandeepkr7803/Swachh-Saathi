@@ -1,86 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:swachh_saathi_admin/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:swachh_saathi_admin/models/article_model.dart';
 
-class NewsArticle extends StatefulWidget {
-  const NewsArticle({super.key});
+class NewsArticle extends StatelessWidget {
+  final Article article;
 
-  @override
-  State<NewsArticle> createState() => _NewsArticleState();
-}
+  const NewsArticle({super.key, required this.article});
 
-class _NewsArticleState extends State<NewsArticle> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 270,
-                width: double.maxFinite,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage('assets/img/clean.jpg'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 25.0, left: 15),
-                      child: IconButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                          MaterialStatePropertyAll(Colors.white54),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.arrow_back),
-                      ),
-                    ),
-                  ],
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          article.title,
+          style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: Image.asset(
+                'assets/img/clean2.png',
+                width: double.infinity,
+                height: 200.h,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                ),
-                child: Text(
-                  "Waste Management Awareness Campaign",
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: themeColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            ),
+            SizedBox(height: 20.h),
+            Text(
+              article.title,
+              style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              article.createdAt,
+              maxLines: 2,
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.red,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 8,
-                ),
-                child: SingleChildScrollView(
-                  child: Text(
-                    'Waste Management Awareness Campaign has been started to raise awareness among the people towards clean and green city.',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              article.description,
+              style: TextStyle(fontSize: 16.sp),
+            ),
+          ],
         ),
       ),
     );
