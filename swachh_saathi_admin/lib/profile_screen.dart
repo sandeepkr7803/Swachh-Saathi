@@ -22,6 +22,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String password = '';
   String name = ' ';
   String phoneNo = ' ';
+  String designation = ' ';
+  String location = ' ';
 
   @override
   void initState() {
@@ -39,6 +41,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           password = doc['password'] ?? '';
           phoneNo = doc['phone_no'] ?? ' ';
           name = doc['name'] ?? ' ';
+          designation = doc['designation'] ?? " ";
+          location = doc['location'] ?? ' ';
         });
       }
     }
@@ -177,12 +181,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                               subtitle: Text(
-                                'Designation',
+                                designation,
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w200,
-                                ),
+                                    fontSize: 16,
+                                    color: const Color.fromARGB(
+                                        255, 255, 255, 255),
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic),
                               ),
                             ),
                           ),
@@ -194,9 +199,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             SizedBox(height: 20.h),
-            cardData(Icons.person_2_rounded, email),
+            cardData(Icons.email, email),
             cardData(Icons.phone, phoneNo),
-            cardData(Icons.location_on, 'Dehradun'),
+            cardData(Icons.location_on, location),
             cardData(Icons.star, "Rate Us"),
             SizedBox(height: 20.h),
             ElevatedButton(

@@ -17,43 +17,49 @@ class NewsArticle extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12.r),
-              child: Image.asset(
-                'assets/img/clean2.png',
-                width: double.infinity,
-                height: 200.h,
-                fit: BoxFit.cover,
-              ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16.w),
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12.r),
+                  child: Image.asset(
+                    'assets/img/clean2.png',
+                    width: double.infinity,
+                    height: 200.h,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                Text(
+                  article.title,
+                  style:
+                      TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  article.createdAt,
+                  maxLines: 2,
+                  textAlign: TextAlign.right,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.red,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Text(
+                  article.description,
+                  style: TextStyle(fontSize: 16.sp),
+                ),
+              ],
             ),
-            SizedBox(height: 20.h),
-            Text(
-              article.title,
-              style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              article.createdAt,
-              maxLines: 2,
-              textAlign: TextAlign.right,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w700,
-                color: Colors.red,
-              ),
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              article.description,
-              style: TextStyle(fontSize: 16.sp),
-            ),
-          ],
+          ),
         ),
       ),
     );

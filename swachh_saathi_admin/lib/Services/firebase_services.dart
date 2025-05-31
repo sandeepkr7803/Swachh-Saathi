@@ -36,6 +36,6 @@ class FirebaseService {
       createdAt: DateFormat('d MMMM yyyy hh:mm a').format(DateTime.now()),
     );
 
-    await docRef.set(article.toMap());
+    await docRef.set(article.tojson());
   }
 }

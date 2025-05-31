@@ -1,10 +1,12 @@
+import 'dart:convert';
+
 class Article {
-  final String id;
-  final String title;
-  final String description;
+  String id;
+  String title;
+  String description;
   // final String imageUrl;
-  final String userId;
-  final String createdAt;
+  String userId;
+  String createdAt;
 
   Article({
     required this.id,
@@ -15,7 +17,7 @@ class Article {
     required this.createdAt,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> tojson() {
     return {
       'id': id,
       'title': title,
@@ -26,14 +28,14 @@ class Article {
     };
   }
 
-  factory Article.fromMap(Map<String, dynamic> map) {
+  factory Article.fromjson(Map<String, dynamic> json) {
     return Article(
-      id: map['id'],
-      title: map['title'],
-      description: map['description'],
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
       // imageUrl: map['imageUrl'],
-      userId: map['userId'],
-      createdAt: map['createdAt'],
+      userId: json['userId'],
+      createdAt: json['createdAt'],
     );
   }
 }
